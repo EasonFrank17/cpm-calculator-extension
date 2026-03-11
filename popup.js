@@ -1,4 +1,4 @@
-// 获取DOM元素
+// Get DOM elements
 const totalCostInput = document.getElementById('totalCost');
 const totalImpressionsInput = document.getElementById('totalImpressions');
 const calculateBtn = document.getElementById('calculateBtn');
@@ -6,35 +6,35 @@ const resultDiv = document.getElementById('result');
 const cpmValueDiv = document.getElementById('cpmValue');
 const errorDiv = document.getElementById('error');
 
-// 计算CPM的函数
+// Calculate CPM function
 function calculateCPM(totalCost, totalImpressions) {
-  // CPM = (总花费 / 总展示量) × 1000
+  // CPM = (Total Cost / Total Impressions) × 1000
   return (totalCost / totalImpressions) * 1000;
 }
 
-// 显示错误消息
+// Display error message
 function showError(message) {
   errorDiv.textContent = message;
   errorDiv.classList.remove('hidden');
   resultDiv.classList.add('hidden');
 }
 
-// 隐藏错误消息
+// Hide error message
 function hideError() {
   errorDiv.classList.add('hidden');
 }
 
-// 显示结果
+// Display result
 function showResult(cpm) {
   cpmValueDiv.textContent = `$${cpm.toFixed(2)}`;
   resultDiv.classList.remove('hidden');
   hideError();
 }
 
-// 验证输入
+// Validate inputs
 function validateInputs(totalCost, totalImpressions) {
   if (totalCost === '' || totalImpressions === '') {
-    showError('请输入所有必填项');
+    showError('Please enter all required fields');
     return false;
   }
 
@@ -42,24 +42,24 @@ function validateInputs(totalCost, totalImpressions) {
   const impressions = parseFloat(totalImpressions);
 
   if (isNaN(cost) || isNaN(impressions)) {
-    showError('请输入有效的数字');
+    showError('Please enter valid numbers');
     return false;
   }
 
   if (cost < 0 || impressions < 0) {
-    showError('数值不能为负数');
+    showError('Values cannot be negative');
     return false;
   }
 
   if (impressions === 0) {
-    showError('总展示量不能为0');
+    showError('Total impressions cannot be zero');
     return false;
   }
 
   return true;
 }
 
-// 处理计算按钮点击事件
+// Handle calculate button click event
 calculateBtn.addEventListener('click', () => {
   const totalCost = totalCostInput.value.trim();
   const totalImpressions = totalImpressionsInput.value.trim();
@@ -72,7 +72,7 @@ calculateBtn.addEventListener('click', () => {
   }
 });
 
-// 支持按Enter键计算
+// Support Enter key to calculate
 totalCostInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     calculateBtn.click();
@@ -85,6 +85,6 @@ totalImpressionsInput.addEventListener('keypress', (e) => {
   }
 });
 
-// 当输入改变时隐藏之前的错误
+// Hide previous error when input changes
 totalCostInput.addEventListener('input', hideError);
 totalImpressionsInput.addEventListener('input', hideError);

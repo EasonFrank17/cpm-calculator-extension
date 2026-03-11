@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +8,39 @@
 </head>
 <body>
   <div class="container">
-    <h1>CPM 计算器</h1>
-    <p class="subtitle">计算每千次展示成本</p>
-
-    <div class="input-group">
-      <label for="totalCost">总花费 ($)</label>
-      <input type="number" id="totalCost" placeholder="请输入总花费" step="0.01" min="0">
+    <div class="header">
+      <div class="icon">$</div>
+      <h1>CPM Calculator</h1>
+      <p class="subtitle">Calculate Cost Per Thousand Impressions</p>
     </div>
 
-    <div class="input-group">
-      <label for="totalImpressions">总展示量</label>
-      <input type="number" id="totalImpressions" placeholder="请输入总展示量" min="0">
+    <div class="content">
+      <div class="input-section">
+        <div class="input-group">
+          <label for="totalCost">Total Cost ($)</label>
+          <input type="number" id="totalCost" placeholder="Enter total cost" step="0.01" min="0">
+        </div>
+
+        <div class="input-group">
+          <label for="totalImpressions">Total Impressions</label>
+          <input type="number" id="totalImpressions" placeholder="Enter total impressions" min="0">
+        </div>
+      </div>
+
+      <button id="calculateBtn" class="calculate-btn">Calculate CPM</button>
+
+      <div id="result" class="result hidden">
+        <div class="result-label">CPM VALUE</div>
+        <div id="cpmValue" class="result-value">$0.00</div>
+        <div class="formula">CPM = (Total Cost / Total Impressions) × 1000</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="help-text">Tip: CPM measures the cost of 1,000 ad impressions</p>
+
+      <div id="error" class="error hidden"></div>
     </div>
-
-    <button id="calculateBtn" class="calculate-btn">计算 CPM</button>
-
-    <div id="result" class="result hidden">
-      <div class="result-label">CPM 值</div>
-      <div id="cpmValue" class="result-value">$0.00</div>
-      <div class="formula">CPM = (总花费 / 总展示量) × 1000</div>
-    </div>
-
-    <div id="error" class="error hidden"></div>
   </div>
 
   <script src="popup.js"></script>
